@@ -1,0 +1,23 @@
+Common fields when Adding new coltan/cassiterite/wolframite/mixed/beryllium/lithium entry
+company info + following fields
+fields:
+- field: Beneficiary -> request body name: isSupplierBeneficiary
+- field: number of tags
+- field: Weight in -> req.body name: grossQuantity
+- field: Weight out -> req.body name: netQuantity
+- field: Date of Supply -> req.body: supplyDate
+- field: time -> req.body: time
+- field: Type of Mineral -> req.body: mineralType
+
+// add new mixed entry
+- field name: coltan weight out -> req body name: coltan;
+- field name: cassiterite weight out -> req body name: cassiterite
+
+// add new beryllium/lithium entry
+- They don't have number of tags field
+supplier 
+phone nbr
+mineral type
+wieght in
+weight out
+
