@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import TestChart from "./charts/TestChart";
 import {ImSpinner2} from "react-icons/im";
 import { useGetStockSummaryQuery, useGetYearStockSummaryQuery, useShipmentSuppliersGraphQuery } from "../../states/apislice";
-import companyLogo from "../../assets/companyLogo.png";
 const DashboardPage = () => {
   // const shipmentId="658046954a131843477411b0"
   const[pieArray,SetPieArray]=useState([]);
@@ -307,7 +306,6 @@ useEffect(()=>{
 return(
     <div className="py-5">
     <p className=" font-bold text-lg mb-2">Dashboard Page</p>
-    <img className="mb-3 w-full border rounded-[4px]" src={companyLogo} alt="Company Logo"/>
     <div className=" grid grid-cols-1 md:grid-cols-8 lg:grid-cols-12 gap-3">
 
         <div className=" col-span-full lg:col-span-4 p-2 min-h-[180px] rounded-md shadow-lg bg-white flex justify-center items-center  space-y-2">
