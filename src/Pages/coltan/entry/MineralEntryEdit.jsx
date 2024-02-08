@@ -278,10 +278,11 @@ const MineralEntryEdit = () => {
         }
       }
     }
-    console.log({ model: model, entryId, body: requestId ? newBody : body })
-    // await updateEntry({ model: "coltan", entryId, body: requestId ? newBody : body });
+    // console.log({ model: model, entryId, body: requestId ? newBody : body })
+    // console.log(body);
+    await updateEntry({ model, entryId, body: requestId ? newBody : body });
     dispatch({type:ACTION.RETURN_TO_INITIAL});
-    // navigate(-1);
+    navigate(-1);
   };
   const handleCancel = () => {
     dispatch({type:ACTION.RETURN_TO_INITIAL});
