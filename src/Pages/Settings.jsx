@@ -45,6 +45,8 @@ const Settings = () => {
   useEffect(() => {
     if (isSuccess) {
       const { settings: existingSettings } = data.data;
+      console.log("---------------------------")
+      console.log(existingSettings);
       setSettings((prevState) => ({
         ...prevState,
         rmaFeeWolframite: existingSettings.rmaFeeWolframite,
@@ -173,7 +175,7 @@ const Settings = () => {
                       <input
                           type="number"
                           name="rmaFeeLithium"
-                          value={settings.rmaFeeLithium || ""}
+                          value={settings.rmaFeeLithium || 0}
                           className="focus:outline-none p-2 border rounded-lg w-full"
                           onWheelCapture={(e) => {
                             e.target.blur();
@@ -186,7 +188,7 @@ const Settings = () => {
                     <input
                         type="number"
                         name="rmaFeeBeryllium"
-                        value={settings.rmaFeeBeryllium || ""}
+                        value={settings.rmaFeeBeryllium || 0}
                         className="focus:outline-none p-2 border rounded-lg w-full"
                         onWheelCapture={(e) => {
                           e.target.blur();
