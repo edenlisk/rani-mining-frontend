@@ -1,12 +1,12 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 
-// const existingUrl = "https://mining-company-management-system.onrender.com/api/v1/";
+// const existingUrl = "https://rani-mining-company-backend.onrender.com/api/v1/";
 // "http://localhost:5001/api/v1/"
 
 export const apiSlice = createApi({
     reducerPath: "adminApi",
     baseQuery: fetchBaseQuery({
-        baseUrl: "http://localhost:5001/api/v1/",
+        baseUrl: "https://rani-mining-company-backend.onrender.com/api/v1/",
         prepareHeaders: (headers, {getState}) => {
             const token = getState().persistedReducer?.global?.token
             if (token) {
