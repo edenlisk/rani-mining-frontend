@@ -154,16 +154,14 @@ const Sidebar = ({filteredMenu, opennav, open, logOut}) => {
                                 return (
                                     <Fragment key={index}>
 
-                                        {/* <Tooltip title={title} placement="rightTop" color={"#fff"} overlayInnerStyle={{color:"black"}} trigger={["hover"]}> */}
                                         <li key={index} className={`hover:ml-4 justify-end pr-5 text-black hover:text-custom_blue-500 hover:bg-custom_blue-100 hover:shadow-md w-full p-3 rounded transform ease-in-out duration-300 flex
                 ${active === navtext && ' bg-custom_blue-200 text-custom_blue-700 rounded'}
                 `} 
                                         >
                                             <span className="w-4 h-4 " onClick={opennav}>{icon}</span>
                                         </li>
-                                        {/* </Tooltip> */}
 
-                                        <Tooltip title={title} placement="rightTop" color={"#fff"}
+                                        {/* <Tooltip title={title} placement="rightTop" color={"#fff"}
                                                  overlayInnerStyle={{color: "black"}} trigger={["hover"]}>
                                             <li key={index} className={`hover:ml-4 justify-end pr-5 text-black hover:text-custom_blue-500 hover:bg-custom_blue-100 hover:shadow-md w-full p-3 rounded transform ease-in-out duration-300 flex
                 ${active === navtext && ' bg-custom_blue-200 text-custom_blue-700 rounded'}
@@ -171,7 +169,7 @@ const Sidebar = ({filteredMenu, opennav, open, logOut}) => {
                                             >
                                                 <span className="w-4 h-4 " onClick={opennav}>{icon}</span>
                                             </li>
-                                        </Tooltip>
+                                        </Tooltip> */}
                                     </Fragment>
                                 )
                             })}
