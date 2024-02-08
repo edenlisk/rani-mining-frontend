@@ -26,7 +26,7 @@ const UsersListPage = () => {
   const { data, isLoading, isSuccess, isError, error } = useGetAllUsersQuery("", {
     refetchOnMountOrArgChange: true,
     refetchOnReconnect: true
-  });
+  }); 
   const [
     deleteUser,
     { isLoading: isDeleting, isSuccess: isdone, isError: isproblem,error:problem },

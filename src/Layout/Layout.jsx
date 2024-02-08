@@ -1,6 +1,7 @@
 import React, { useEffect, useState, Fragment } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { PiCaretLeftLight, PiWindowsLogoDuotone, PiHandbagDuotone, PiUserDuotone, PiUsersDuotone,PiUserPlusDuotone, PiEnvelopeLight, PiCubeDuotone, PiShieldDuotone, PiGlobeSimpleLight, PiCaretRightLight, PiUser, PiSquaresFourDuotone, PiDeviceMobileCameraDuotone, PiPlusSquareDuotone, PiCubeTransparentDuotone, PiTagDuotone, PiSpeakerHifiDuotone, PiBarcodeDuotone, PiArrowsInSimpleDuotone, PiShoppingCartSimpleDuotone, PiFilesDuotone, PiFileTextDuotone, PiFloppyDiskDuotone, PiArrowsClockwiseDuotone, PiArrowBendUpLeftDuotone, PiDatabaseDuotone, PiSignInDuotone, PiChartPieDuotone, PiHouseDuotone, PiBrowserDuotone, PiFileMinusDuotone, PiGearDuotone, PiFileDuotone, PiShoppingBagDuotone, PiBellSimpleLight, PiGearLight,PiHandshakeDuotone,PiTruckDuotone,PiFolderSimpleDuotone  } from "react-icons/pi";
+import { GoHistory } from "react-icons/go";
 import { LuBarChart2 } from "react-icons/lu"
 import { GiDiamondHard } from "react-icons/gi"
 import { PiCurrencyEthDuotone } from "react-icons/pi"
@@ -97,7 +98,7 @@ const Layout = () => {
                 
         {
             heading: "Tags", show: permissions.tags?.view, hId: 79, subHeaders: [
-                { title: "List Tags", show: permissions.tags?.view, icon: <PiTagDuotone />, id: 80,navtext:"tags",line: true },
+                { title: "List Tags", show: permissions.tags?.view, icon: <PiTagDuotone />, id: 80,navtext:"tags"},
                 { title: "Add", show: permissions.tags?.create && permissions.tags?.view, icon: <PiTagDuotone />, id: 80,navtext:"add/tag",line: true },
             ]
         },
@@ -160,6 +161,11 @@ const Layout = () => {
             ]
         },
         {
+            heading: "History", show: permissions.users?.view, hId: 87, subHeaders: [
+                { title: "Activity logs", show: permissions.users?.view, icon: <GoHistory />, id: 88,navtext:"logs",line: true },
+            ]
+        },
+        {
             heading: "Settings", show: permissions.settings?.view, hId: 9, subHeaders: [
                 {
                     title: "Settings", show: permissions.settings?.view, icon: <PiGearDuotone />, submenu: true, id: 49, submenuItems: [
@@ -192,7 +198,7 @@ const Layout = () => {
     // Define the roles and their associated menu item IDs and restricted item IDs
     const roleMenus = {
         admin: {
-            allowedSections: [1, 7, 15, 24, 29, 32, 37, 44, 48,79,81, 84, 84],
+            allowedSections: [1, 7, 15, 24, 29, 32, 37, 44, 48,79,81, 84, 84,87],
             restrictedItems: {
                 7: [11, 12], // For section with hId 7, restrict items 11 and 12
                 15: [19, 58], // For section with hId 15, restrict items 19 and 58
@@ -200,14 +206,14 @@ const Layout = () => {
             }
         },
         ceo: {
-            allowedSections: [1, 2,3,4,5,6,7,8,9,79,81,84, 85],
+            allowedSections: [1, 2,3,4,5,6,7,8,9,79,81,84, 85,87],
             restrictedItems: {
                 15: [19, 58], // For section with hId 15, restrict items 19 and 58
                 // Add more restricted items for specific sections as needed
             }
         },
         employee: {
-            allowedSections: [1, 7, 15, 24, 32,29, 37, 44, 48,79,81],
+            allowedSections: [1, 7, 15, 24, 32,29, 37, 44, 48,79,81,87],
             restrictedItems: {
                 // Define restricted items for employee role if needed
             }
