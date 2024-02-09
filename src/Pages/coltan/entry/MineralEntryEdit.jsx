@@ -43,7 +43,7 @@ const MineralEntryEdit = () => {
 
 
   const { data: requestData, isSuccess: isRequestSuccess } =
-    useGetOneEditRequestQuery(
+    useGetOneEditRequestQuery( 
       { requestId },
       {
         skip: !isRequestAvailable,
@@ -152,6 +152,7 @@ const MineralEntryEdit = () => {
     if (isSuccess) {
       const { data: dt } = data;
       const { entry: entr } = dt;
+      // console.log(dt)
       // sup = sups;
       dispatch({type:ACTION.SET_TO_SERVER_DATA,payload:{entr}});
     }
@@ -214,6 +215,7 @@ const MineralEntryEdit = () => {
   // /////
   const handleInitialMinetagsEntry = (e) => {
     dispatch({type:ACTION.HANDLE_INITIAL_MINE_TAGS_ENTRY, payload:{name:e.target.name, value:e.target.value}});
+    // console.log(state.initialMineTags)
   };
 // //////
   const generateTags = () => {
@@ -277,11 +279,12 @@ const MineralEntryEdit = () => {
           }
         }
       }
-    }
-    console.log({ model: model, entryId, body: requestId ? newBody : body })
-    // await updateEntry({ model: "coltan", entryId, body: requestId ? newBody : body });
+    };
+    // console.log({ model: model, entryId, body: requestId ? newBody : body })
+    console.log(body);
+    await updateEntry({ model: "coltan", entryId, body: requestId ? newBody : body });
     dispatch({type:ACTION.RETURN_TO_INITIAL});
-    // navigate(-1);
+    navigate(-1);
   };
   const handleCancel = () => {
     dispatch({type:ACTION.RETURN_TO_INITIAL});
@@ -510,7 +513,7 @@ const MineralEntryEdit = () => {
                         <li>
                           <p className="mb-1 font-semibold">Initial tag weight</p>
                           <input
-                            type="text"
+                            type="number"
                             name="weight"
                             autoComplete="off"
                             className="focus:outline-none p-2 border rounded-lg w-full"
@@ -546,7 +549,8 @@ const MineralEntryEdit = () => {
                               }else{
                                 handleInitialMinetagsEntry(e);
                               }
-                            }}
+                            }
+                          }
                           />
                         </li>
                         <li>

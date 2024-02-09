@@ -228,21 +228,19 @@ export const formEditReducer = (state, action) => {
       };
     case "GENERATE_MINE_TAGS":
       const { weight, sheetNumber, tagNumber, limit } = state.initialMineTags;
-      const startingTagNumber = parseInt(tagNumber, 10) || 0;
-
-      const tags = Array.from(
-        { length: parseInt(limit, 10) || 0 },
-        (_, index) => {
-          const newTagNumber = startingTagNumber + index;
-          return {
-            weight,
-            tagNumber: isNaN(newTagNumber)
-              ? tagNumber
-              : newTagNumber.toString(),
-            sheetNumber,
-          };
-        }
-      );
+      
+      const lastDigitsMatch = tagNumber.match(/\d+$/);
+      const startingTagNumber = parseInt(lastDigitsMatch ? lastDigitsMatch[0] : 0, 10);
+      
+      const tags = Array.from({ length: parseInt(limit, 10) || 0 }, (_, index) => {
+        const newTagNumber = startingTagNumber + index;
+        const newTagNumberString = tagNumber.replace(/\d+$/, newTagNumber.toString().padStart(lastDigitsMatch[0].length, '0'));
+        return {
+          weight,
+          tagNumber: newTagNumberString,
+          sheetNumber,
+        };
+      });
 
       return {
         ...state,
