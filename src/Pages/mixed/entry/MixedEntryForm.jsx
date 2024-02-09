@@ -229,6 +229,7 @@ const MixedEntryForm = () => {
       cassiteriteOutput: cassiteriteLotDetails,
     };
     await createEntry({ body, model: "mixed" });
+    navigate(-1);
   };
   const handleCancel = () => {
     setFormval({
@@ -239,7 +240,7 @@ const MixedEntryForm = () => {
       email: "",
       supplierId: "",
       companyRepresentative: "",
-      representativeId: "",
+      // representativeId: "",
       representativePhoneNumber: "",
       supplyDate: "",
       time: "",
@@ -399,18 +400,18 @@ const MixedEntryForm = () => {
                       onChange={handleEntry}
                     />
                   </li>
-                  <li className=" space-y-1">
-                    <p className="pl-1">Representative ID number</p>
-                    <input
-                      type="text"
-                      autoComplete="off"
-                      className="focus:outline-none p-2 border rounded-md w-full"
-                      name="representativeId"
-                      id="representativeId"
-                      value={formval.representativeId || ""}
-                      onChange={handleEntry}
-                    />
-                  </li>
+                  {/*<li className=" space-y-1">*/}
+                  {/*  <p className="pl-1">Representative ID number</p>*/}
+                  {/*  <input*/}
+                  {/*    type="text"*/}
+                  {/*    autoComplete="off"*/}
+                  {/*    className="focus:outline-none p-2 border rounded-md w-full"*/}
+                  {/*    name="representativeId"*/}
+                  {/*    id="representativeId"*/}
+                  {/*    value={formval.representativeId || ""}*/}
+                  {/*    onChange={handleEntry}*/}
+                  {/*  />*/}
+                  {/*</li>*/}
                   <li className=" space-y-1">
                     <p className="pl-1">Representative phone nbr</p>
                     <input

@@ -13,7 +13,7 @@ export const INITIAL_STATE = {
     TINNumber: "",
     licenseNumber: "",
     companyRepresentative: "",
-    representativeId: "",
+    // representativeId: "",
     representativePhoneNumber: "",
     mineralType: "",
     supplyDate: "",
