@@ -19,7 +19,7 @@ export const PricingGrade = ({updateEntry, value, entryId, lotNumber, model}) =>
     const content = (
         <div className="flex flex-col">
             <Radio.Group value={pricingGrade} onChange={(e) => updatePricingGrade(e.target.value)}>
-                <Radio value="KZM">KZM</Radio>
+                <Radio value="KZM">RANI</Radio>
                 <Radio value="ASIR">ASIR</Radio>
             </Radio.Group>
         </div>

@@ -264,7 +264,7 @@ const WolframiteEntryCompletePage = ({entryId}) => {
             table: true,
         },
         mineralGrade: {
-            title: "Grade (%)",
+            title: "Grade-RANI(%)",
             dataIndex: "mineralGrade",
             key: "mineralGrade",
             table: true,

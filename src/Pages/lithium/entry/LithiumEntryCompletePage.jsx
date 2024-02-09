@@ -262,7 +262,7 @@ const LithiumEntryCompletePage = ({entryId}) => {
             table: true,
         },
         mineralGrade: {
-            title: "Grade-KZM(%)",
+            title: "Grade-RANI(%)",
             dataIndex: "mineralGrade",
             key: "mineralGrade",
             table: true,
