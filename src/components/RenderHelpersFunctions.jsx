@@ -116,6 +116,23 @@ const RenderFormHelper = ({
                     />
                 </li>
             );
+            case "weightIn":
+            return (
+                <li className=" space-y-1" key={kase}>
+                    {<p className="pl-1">{FormatTolabelCase(kase)}</p>}
+                    <input
+                        type="number"
+                        autoComplete="off"
+                        className="focus:outline-none p-2 border rounded-md w-full"
+                        name={kase}
+                        value={state.formval[kase] || ""}
+                        disabled={
+                            editableFields?.length > 0 ? decideEditable(kase) : false
+                        }
+                        onChange={handleEntry}
+                    />
+                </li>
+            );
         default:
             return (
                 <li className=" space-y-1" key={kase}>

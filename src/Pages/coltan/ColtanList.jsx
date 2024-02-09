@@ -312,16 +312,7 @@ const ColtanListPage = () => {
         },
 
         {
-            title: (
-                <div className=" grid grid-cols-1 gap-1 lg:grid-cols-2 items-center">
-                    <p>Action</p>
-                    <IoTrashBinOutline className=" text-lg" onClick={()=>{
-                        if(dataz!==dummyarch){
-                            setDataz(dummyarch);
-                        } 
-                       }}/>
-                </div>
-            ),
+            title: "Action",
             dataIndex: "action",
             key: "action",
             render: (_, record) => {

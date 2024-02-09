@@ -606,51 +606,6 @@ const CassiteriteEntryCompletePage = ({entryId}) => {
                     <AddComponent
                         component={
                             <>
-                                {/*{isLoading ? (*/}
-                                {/*    <div className="flex h-32 w-full items-center justify-center bg-white">*/}
-                                {/*        <ImSpinner2 className=" h-10 w-10 animate-spin text-gray-400"/>*/}
-                                {/*    </div>*/}
-                                {/*) : (*/}
-                                {/*    <div className="flex flex-col gap-6 w-full">*/}
-                                {/*        <div*/}
-                                {/*            className="w-full  grid grid-cols-2 p-2 border-b items-center justify-between rounded-md">*/}
-                                {/*            <p className=" font-semibold text-lg">Entry details</p>*/}
-                                {/*        </div>*/}
-
-                                {/*        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 w-full pb-6">*/}
-                                {/*            <li>*/}
-                                {/*                <p className=" text-md text-indigo-500 pb-[1px] font-semibold">*/}
-                                {/*                    Entry details*/}
-                                {/*                </p>*/}
-                                {/*                <p>Weight in: {suply?.weightIn}</p>*/}
-                                {/*                <p>Mineral type: {suply?.mineralType}</p>*/}
-                                {/*                /!* <p>Supply date: {dayjs(suply?.supplyDate).format("MMM DD, YYYY")}</p> *!/*/}
-                                {/*                <p>Number of tags: {suply?.numberOfTags}</p>*/}
-                                {/*                <p>Beneficiary: {suply?.beneficiary}</p>*/}
-                                {/*            </li>*/}
-                                {/*            <li>*/}
-                                {/*                <p className=" text-md text-indigo-500 pb-[1px] font-semibold">*/}
-                                {/*                    Company info*/}
-                                {/*                </p>*/}
-                                {/*                <p>Name: {suply?.companyName}</p>*/}
-                                {/*                <p>Email: {suply.email}</p>*/}
-                                {/*                <p>TIN Number: {suply.TINNumber}</p>*/}
-                                {/*                <p className=" shrink">*/}
-                                {/*                    License Number: {suply.licenseNumber}*/}
-                                {/*                </p>*/}
-                                {/*            </li>*/}
-                                {/*            <li>*/}
-                                {/*                <p className=" text-md text-indigo-500 pb-[1px] font-semibold">*/}
-                                {/*                    Representative info*/}
-                                {/*                </p>*/}
-                                {/*                <p>Phone number: {suply.representativePhoneNumber}</p>*/}
-                                {/*                <p>ID: {suply.representativeId}</p>*/}
-                                {/*                /!*<p>Nbr of Transporters:{suply.numberOfTransporters}</p>*!/*/}
-                                {/*            </li>*/}
-
-                                {/*        </ul>*/}
-                                {/*    </div>*/}
-                                {/*)}*/}
                                 <div className="w-full">
                                     <Form form={form} component={false}>
                                         <Table
