@@ -173,6 +173,8 @@ const AddInvoice = () => {
             key: "mineralGrade",
             render: (_, record) => {
                 if (record.pricingGrade) {
+                    console.log("here is pricing grade")
+                    console.log(record[decidePricingGrade(record.pricingGrade)]);
                     return <p>{record[decidePricingGrade(record.pricingGrade)]}</p>
                 }
             }
@@ -261,7 +263,11 @@ const AddInvoice = () => {
             title: "mineral Grade",
             dataIndex: "mineralGrade",
             key: "mineralGrade",
-
+            render: (_, record) => {
+                if (record.pricingGrade) {
+                    return <p>{record[decidePricingGrade(record.pricingGrade)]}</p>
+                }
+            }
         },
         {
             title: "pricePerUnit",

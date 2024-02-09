@@ -59,7 +59,7 @@ const AdvancedPaymentEntry = () => {
 
 
     useEffect(() => {
-        if (isSuccess) {
+        if (isDone) {
             const {suppliers: sups} = data.data;
             setSup(sups);
         }
