@@ -20,7 +20,7 @@ useEffect(()=>{
       return{
         name,
         type: 'bar',
-        stack: stackValue,
+        // stack: stackValue,
         emphasis:{ 
           itemStyle: {
           shadowBlur: 10,
