@@ -301,8 +301,8 @@ const ColtanListPage = () => {
                     record.output.forEach((item) => {
                       if(item.cumulativeAmount){
                         sum += parseFloat(item.cumulativeAmount);
-                      } else{
-                        sum += parseFloat(item.weightOut);
+                      } else {
+                        sum += parseFloat(item.weightOut) || 0;
                       }
                      
                     });

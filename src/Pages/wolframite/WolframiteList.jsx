@@ -281,7 +281,7 @@ const WolframiteListPage = () => {
             if(item.cumulativeAmount){
               sum += parseFloat(item.cumulativeAmount);
             } else{
-              sum += parseFloat(item.weightOut);
+              sum += parseFloat(item.weightOut) || 0;
             }
            
           });

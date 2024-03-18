@@ -437,7 +437,7 @@ const ColtanEntryCompletePage = ({entryId}) => {
             title: "weight out (KG)",
             dataIndex: "weightOut",
             key: "weightOut",
-            // editTable: true,
+            editTable: true,
         },
         {
             title: "balance (KG)",

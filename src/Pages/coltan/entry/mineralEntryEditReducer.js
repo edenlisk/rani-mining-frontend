@@ -33,7 +33,7 @@ export const INITIAL_STATE = {
     { weight: null, tagNumber: "", sheetNumber: "", limit: "" },
   ],
   mineTags: [{ weight: null, tagNumber: "", sheetNumber: "", status: "" }],
-  lotDetails: [{ lotNumber: "", weightOut: "" }],
+  lotDetails: [{ lotNumber: "", weightBefore: "" }],
 };
 
 export const ACTION = {
@@ -167,7 +167,7 @@ export const formEditReducer = (state, action) => {
     case "ADD_LOT":
       return {
         ...state,
-        lotDetails: [...state.lotDetails, { lotNumber: "", weightOut: "" }],
+        lotDetails: [...state.lotDetails, { lotNumber: "", weightBefore: "" }],
       };
     case "REMOVE_LOT":
       return {

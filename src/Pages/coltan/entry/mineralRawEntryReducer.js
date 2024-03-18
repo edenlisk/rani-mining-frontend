@@ -30,7 +30,7 @@ export const INITIAL_STATE = {
     //   beneficiary: "",
     isSupplierBeneficiary: false,
   },
-  lotDetails: [{ lotNumber: "", weightOut: "" }],
+  lotDetails: [{ lotNumber: "", weightBefore: "" }],
 };
 
 export const ACTION={
@@ -123,7 +123,7 @@ export const formReducer = (state, action) => {
     case "ADD_LOT":
       return {
         ...state,
-        lotDetails: [...state.lotDetails, { lotNumber: "", weightOut: "" }],
+        lotDetails: [...state.lotDetails, { lotNumber: "", weightBefore: "" }],
       };
       case 'REMOVE_LOT':
         return {

@@ -458,8 +458,8 @@ const MineralEntryEdit = () => {
                               type="number"
                               autoComplete="off"
                               className="focus:outline-none p-2 border rounded-md w-full"
-                              name="weightOut"
-                              value={lot.weightOut || ""}
+                              name="weightBefore"
+                              value={lot.weightBefore || ""}
                               disabled={
                                 editableFields.length > 0
                                   ? decideEditable("output")

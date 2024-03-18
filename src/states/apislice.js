@@ -6,7 +6,7 @@ import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 export const apiSlice = createApi({
     reducerPath: "adminApi",
     baseQuery: fetchBaseQuery({
-        baseUrl: "https://rani-mining-company-backend.onrender.com/api/v1/",
+        baseUrl: "http://localhost:5001/api/v1/",
         prepareHeaders: (headers, {getState}) => {
             const token = getState().persistedReducer?.global?.token
             if (token) {
@@ -15,7 +15,7 @@ export const apiSlice = createApi({
             return headers;
         },
     }),
-    tagTypes: ['buyers', 'contracts', 'advance-payment', 'messages', "tags", 'notifications', 'shipments', 'dueDiligence', 'payments', 'entries','suppliers', 'invoice', "dd-reports", "statistics", "settings", "editRequest"],
+    tagTypes: ['buyers', 'contracts', 'advance-payment', 'assets', 'messages', "tags", 'notifications', 'shipments', 'dueDiligence', 'payments', 'entries','suppliers', 'invoice', "dd-reports", "statistics", "settings", "editRequest"],
     endpoints: (builder) => ({
 
         endpointname: builder.query({
@@ -782,6 +782,37 @@ export const apiSlice = createApi({
             }),
             invalidatesTags: ['shipments']
         }),
+        getAllAssets: builder.query({
+            query: () => `/assets`,
+            providesTags: ['assets']
+        }),
+        getOneAsset: builder.query({
+            query: ({assetId}) => `/assets/${assetId}`,
+            providesTags: ['assets'],
+        }),
+        createAsset: builder.mutation({
+            query: ({body}) => ({
+                url: `/assets`,
+                method: "POST",
+                body
+            }),
+            invalidatesTags: ['assets']
+        }),
+        updateAsset: builder.mutation({
+            query: ({body, assetId}) => ({
+                url: `/assets/${assetId}`,
+                method: "PATCH",
+                body
+            }),
+            invalidatesTags: ['assets']
+        }),
+        deleteAsset: builder.mutation({
+            query: ({assetId}) => ({
+                url: `/assets/${assetId}`,
+                method: "DELETE",
+            }),
+            invalidatesTags: ['assets']
+        })
     })
 })
 export const {
@@ -910,5 +941,10 @@ export const {
     useGenerateForwardNoteMutation,
     useSetup2FAMutation,
     useVerify2FAMutation,
-    useVerifyCodeMutation
+    useVerifyCodeMutation,
+    useGetAllAssetsQuery,
+    useGetOneAssetQuery,
+    useCreateAssetMutation,
+    useUpdateAssetMutation,
+    useDeleteAssetMutation,
 } = apiSlice

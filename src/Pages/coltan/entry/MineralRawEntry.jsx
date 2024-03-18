@@ -246,7 +246,7 @@ const MineralRawEntry = () => {
                     {/* CONTAINER HAVING LOTS DYNAMICY FORM */}
                     <span className=" bg-slate-800 p-[0.5px] relative col-span-full mb-3">
                       <p className="pl-1 bg-white absolute -top-4 left-2 font-semibold">
-                        Lots
+                        Lots Before Processing
                       </p>
                     </span>
                     <div className="col-span-1 space-y-3">
@@ -261,8 +261,8 @@ const MineralRawEntry = () => {
                             type="number"
                             autoComplete="off"
                             className="focus:outline-none p-2 border rounded-md w-full"
-                            name="weightOut"
-                            value={lot.weightOut || ""}
+                            name="weightBefore"
+                            value={lot.weightBefore || ""}
                             onWheelCapture={(e) => {
                               e.target.blur();
                             }}

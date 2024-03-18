@@ -69,6 +69,7 @@ import EditRequests from "./Pages/EditRequests";
 import SingleImageUpload from "./Pages/Simbo";
 import Chat from "./Pages/Chat/Chat";
 import ColtanEditRequestPage from './Pages/EditRequestspages/ColtanEditRequestPage';
+import AssetsList from "./RaniAssets/AssetsList";
 // import InvoiceTemp from './test elements/InvoiceTemp';
 // import SuppliersInvoice from './Pages/InvoicePages/SuppliersInvoice';
 import AdvancedPaymentsList from './Pages/AdvancedPayments/AdvancedPaymentsList';
@@ -100,6 +101,7 @@ import ParentComponent from './test elements/ParentComponentTest';
 import ColtanEntryDynamicForm from './Pages/coltan/entry/ColtanEnteryDynamicForm';
 import MineralRawEntry from './Pages/coltan/entry/MineralRawEntry';
 import MineralEntryEdit from './Pages/coltan/entry/MineralEntryEdit';
+import AddAsset from "./RaniAssets/AddAsset";
 
 function App() {
 
@@ -222,6 +224,8 @@ function App() {
                                     <Route path='/add/tag' element={<AddTag/>}/>
                                     <Route path="/supplier/invoices/:supplierId" element={<InvoiceList/>}/>
                                     <Route path="/advance-payment/edit/:paymentId" element={<EditAdvancePayment/>}/>
+                                    <Route path="/assets" element={<AssetsList/>}/>
+                                    <Route path="/assets/add" element={<AddAsset/>}/>
                                     <Route path="/yoo" element={<StyleTestPage/>}/>
                                     <Route path="/m" element={<MineralRawEntry/>}/>
                                 </Route>
