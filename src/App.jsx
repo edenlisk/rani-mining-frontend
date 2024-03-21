@@ -100,6 +100,9 @@ import ParentComponent from './test elements/ParentComponentTest';
 import ColtanEntryDynamicForm from './Pages/coltan/entry/ColtanEnteryDynamicForm';
 import MineralRawEntry from './Pages/coltan/entry/MineralRawEntry';
 import MineralEntryEdit from './Pages/coltan/entry/MineralEntryEdit';
+import Expenses from "./Pages/Expenses/Expenses";
+import AddExpense from "./Pages/Expenses/addExpense";
+import Beneficiaries from "./Pages/Beneficiaries/Beneficiaries";
 
 function App() {
 
@@ -222,6 +225,11 @@ function App() {
                                     <Route path='/add/tag' element={<AddTag/>}/>
                                     <Route path="/supplier/invoices/:supplierId" element={<InvoiceList/>}/>
                                     <Route path="/advance-payment/edit/:paymentId" element={<EditAdvancePayment/>}/>
+
+                                    <Route path="/expenses" element={<Expenses/>}/>
+                                    <Route path="/expenses/add" element={<AddExpense/>}/>
+
+                                    <Route path="/beneficiaries" element={<Beneficiaries/>}/>
                                     <Route path="/yoo" element={<StyleTestPage/>}/>
                                     <Route path="/m" element={<MineralRawEntry/>}/>
                                 </Route>

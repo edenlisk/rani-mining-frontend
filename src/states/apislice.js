@@ -6,7 +6,7 @@ import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 export const apiSlice = createApi({
     reducerPath: "adminApi",
     baseQuery: fetchBaseQuery({
-        baseUrl: "https://rani-mining-company-backend.onrender.com/api/v1/",
+        baseUrl: "http://localhost:5001/api/v1/",
         prepareHeaders: (headers, {getState}) => {
             const token = getState().persistedReducer?.global?.token
             if (token) {
@@ -15,7 +15,7 @@ export const apiSlice = createApi({
             return headers;
         },
     }),
-    tagTypes: ['buyers', 'contracts', 'advance-payment', 'messages', "tags", 'notifications', 'shipments', 'dueDiligence', 'payments', 'entries','suppliers', 'invoice', "dd-reports", "statistics", "settings", "editRequest"],
+    tagTypes: ['buyers', 'contracts', 'advance-payment', 'messages', "tags", 'expenses', 'notifications', 'shipments', 'dueDiligence', 'payments', 'entries','suppliers', 'invoice', "dd-reports", "statistics", "settings", "editRequest"],
     endpoints: (builder) => ({
 
         endpointname: builder.query({
@@ -782,6 +782,75 @@ export const apiSlice = createApi({
             }),
             invalidatesTags: ['shipments']
         }),
+        getExpenses: builder.query({
+            query: () => `/expenses`,
+            providesTags: ['expenses']
+        }),
+        getOneExpense: builder.query({
+            query: ({expenseId}) => `/expenses/${expenseId}`,
+            providesTags: ['expenses']
+        }),
+        addExpense: builder.mutation({
+            query: ({body}) => ({
+                url: `/expenses`,
+                method: "POST",
+                body
+            }),
+            invalidatesTags: ['expenses']
+        }),
+        updateExpense: builder.mutation({
+            query: ({body, expenseId}) => ({
+                url: `/expenses/${expenseId}`,
+                method: "PATCH",
+                body
+            }),
+            invalidatesTags: ['expenses']
+        }),
+        deleteExpense: builder.mutation({
+            query: ({expenseId}) => ({
+                url: `/expenses/${expenseId}`,
+                method: "DELETE",
+            }),
+            invalidatesTags: ['expenses']
+        }),
+
+        getBeneficiaries: builder.query({
+            query: () => `/beneficiaries`,
+            providesTags: ['beneficiaries']
+        }),
+
+        getOneBeneficiary: builder.query({
+            query: ({expenseId}) => `/beneficiaries/${expenseId}`,
+            providesTags: ['beneficiaries']
+        }),
+
+        addBeneficiary: builder.mutation({
+            query: ({body}) => ({
+                url: `/beneficiaries`,
+                method: "POST",
+                body
+            }),
+            invalidatesTags: ['beneficiaries']
+        }),
+
+        updateBeneficiary: builder.mutation({
+            query: ({body, expenseId}) => ({
+                url: `/beneficiaries/${expenseId}`,
+                method: "PATCH",
+                body
+            }),
+            invalidatesTags: ['beneficiaries']
+        }),
+
+        deleteBeneficiary: builder.mutation({
+            query: ({expenseId}) => ({
+                url: `/beneficiaries/${expenseId}`,
+                method: "DELETE",
+            }),
+            invalidatesTags: ['beneficiaries']
+        })
+
+
     })
 })
 export const {
@@ -910,5 +979,19 @@ export const {
     useGenerateForwardNoteMutation,
     useSetup2FAMutation,
     useVerify2FAMutation,
-    useVerifyCodeMutation
+    useVerifyCodeMutation,
+
+    // Expenses
+    useGetExpensesQuery,
+    useGetOneExpenseQuery,
+    useAddExpenseMutation,
+    useUpdateExpenseMutation,
+    useDeleteExpenseMutation,
+
+    // Beneficiaries
+    useGetBeneficiariesQuery,
+    useGetOneBeneficiaryQuery,
+    useAddBeneficiaryMutation,
+    useUpdateBeneficiaryMutation,
+    useDeleteBeneficiaryMutation,
 } = apiSlice
