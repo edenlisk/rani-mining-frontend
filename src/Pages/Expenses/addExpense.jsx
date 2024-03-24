@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import {DatePicker, message} from "antd";
 import dayjs from "dayjs";
 import {useNavigate} from "react-router-dom";
@@ -8,18 +8,19 @@ const AddExpense = () => {
 
     const [addExpense, { isSuccess, isLoading, isError, error }] = useAddExpenseMutation();
     const navigate = useNavigate();
+    const [selectedFile, setSelectedFile] = useState(null);
+    const supportingDocumentRef = useRef(null);
     const [expense, setExpense] = useState({
         date: '',
         name: '',
         typeOfExpense: '',
         amount: 0,
-        description: ''
+        description: '',
     });
 
     useEffect(() => {
         if (isSuccess) {
             message.success("Expense added successfully");
-            navigate(-1);
         } else if (isError) {
             message.error(error.data?.message);
         }
@@ -36,9 +37,21 @@ const AddExpense = () => {
         }));
     };
 
+    const handleAddFile = (e) => {
+        const files = e.target.files;
+        if (files.length > 0) {
+            setSelectedFile(files[0]);
+        }
+    }
+
     const handleAddExpense = async () => {
-        await addExpense({body: expense});
-        navigate(-1);
+        const formData = new FormData();
+        formData.append("supportingDocument", selectedFile);
+        for (const key in expense) {
+            formData.append(key, expense[key]);
+        }
+        await addExpense({body: formData});
+        handleCancel();
     }
 
     const handleCancel = () => {
@@ -109,6 +122,15 @@ const AddExpense = () => {
                                 <option value="bank equity">Bank Equity</option>
                             </select>
                         </li>
+                        {/* ******* */}
+                        <li>
+                            <p className="mb-1">Upload Supporting document</p>
+                            <input type="file" name="supportingDocument"
+                                   ref={supportingDocumentRef}
+                                   id="supportingDocument" autoComplete="off"
+                                   className="focus:outline-none p-2 border rounded-lg w-full" onChange={handleAddFile}/>
+                        </li>
+                        {/* ******* */}
                     </ul>
                 </div>
                 <div className="flex justify-center gap-2">

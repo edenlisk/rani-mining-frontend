@@ -3,9 +3,9 @@ import ListContainer from "../../components/Listcomponents/ListContainer";
 import { useGetBeneficiariesQuery } from "../../states/apislice";
 import {ImSpinner2} from "react-icons/im";
 import {Table} from "antd";
-// import AddBeneficiary from "./AddBeneficiary";
-// import EditBeneficiary from "./EditBeneficiary";
-// import DeleteBeneficiary from "./DeleteBeneficiary";
+import AddBeneficiary from "./AddBeneficiary";
+import EditBeneficiary from "./EditBeneficiary";
+import DeleteBeneficiary from "./DeleteBeneficiary";
 
 
 
@@ -42,12 +42,31 @@ const Beneficiaries = () => {
             dataIndex: "phoneNumber",
             key: "phoneNumber",
         },
+        {
+            title: "Category",
+            dataIndex: "category",
+            key: "category"
+        },
+        {
+            title: "Action",
+            dataIndex: "action",
+            key: "action",
+            align: "center",
+            render: (_, record) => {
+                return (
+                    <div className="flex gap-2 justify-center">
+                        <EditBeneficiary beneficiaryId={record._id}/>
+                        <DeleteBeneficiary beneficiaryId={record._id}/>
+                    </div>
+                )
+            }
+        }
     ]
 
     return (
         <>
             <ListContainer
-                title={"Beneficiareis"}
+                title={"Beneficiaries"}
                 subTitle={"List of all Beneficiaries"}
                 // navLinktext={"assets/add"}
                 isAllowed={false}
@@ -55,8 +74,7 @@ const Beneficiaries = () => {
                 table={
                     <>
                         <div className="flex p-2 w-full items-end justify-end">
-                            Add Beneficiary
-                            {/*<AddBeneficiary/>*/}
+                            <AddBeneficiary/>
                         </div>
                         <Table
                             className=" w-full overflow-x-auto"

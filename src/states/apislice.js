@@ -267,7 +267,7 @@ export const apiSlice = createApi({
             invalidatesTags: ["advance-payment"]
         }),
         getAllEntries: builder.query({
-            query: ({model}) => `/entry/${model}`,
+            query: ({model, page}) => `/entry/${model}${page? `?page=${page}` : ""}`,
             providesTags: ['entries', 'payments', 'buyers']
         }),
         getEntry: builder.query({
@@ -820,7 +820,7 @@ export const apiSlice = createApi({
         }),
 
         getOneBeneficiary: builder.query({
-            query: ({expenseId}) => `/beneficiaries/${expenseId}`,
+            query: ({beneficiaryId}) => `/beneficiaries/${beneficiaryId}`,
             providesTags: ['beneficiaries']
         }),
 
@@ -834,8 +834,8 @@ export const apiSlice = createApi({
         }),
 
         updateBeneficiary: builder.mutation({
-            query: ({body, expenseId}) => ({
-                url: `/beneficiaries/${expenseId}`,
+            query: ({body, beneficiaryId}) => ({
+                url: `/beneficiaries/${beneficiaryId}`,
                 method: "PATCH",
                 body
             }),
@@ -843,8 +843,8 @@ export const apiSlice = createApi({
         }),
 
         deleteBeneficiary: builder.mutation({
-            query: ({expenseId}) => ({
-                url: `/beneficiaries/${expenseId}`,
+            query: ({beneficiaryId}) => ({
+                url: `/beneficiaries/${beneficiaryId}`,
                 method: "DELETE",
             }),
             invalidatesTags: ['beneficiaries']

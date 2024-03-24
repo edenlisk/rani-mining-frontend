@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { useGetExpensesQuery } from "../../states/apislice";
+import { useGetExpensesQuery, useUpdateExpenseMutation } from "../../states/apislice";
 import ListContainer from "../../components/Listcomponents/ListContainer";
-import {Space, Table, DatePicker} from "antd";
+import {Space, Table, DatePicker, Upload, Button, message} from "antd";
 import dayjs from "dayjs";
 import isBetween from "dayjs/plugin/isBetween";
+import {UploadOutlined} from "@ant-design/icons";
+import {FaExternalLinkSquareAlt} from "react-icons/fa";
 dayjs.extend(isBetween);
 
 const Expenses = () => {
 
-    const { data, isSuccess } = useGetExpensesQuery();
+    const { data, isSuccess } = useGetExpensesQuery("", {refetchOnMountOrArgChange: true});
+    const [updateExpense, {isSuccess: isUpdateSuccess, isError, error}] = useUpdateExpenseMutation();
     const [expenses, setExpenses] = useState([]);
     const { RangePicker } = DatePicker;
     const [beneficiaries, setBeneficiaries] = useState([
@@ -22,7 +25,7 @@ const Expenses = () => {
 
 
     useEffect(() => {
-        if (isSuccess) {
+        if (isSuccess || isUpdateSuccess) {
             const { expenses: expensesData } = data.data;
             setExpenses(expensesData);
             const beneficiariesData = expensesData.map(expense => expense.name);
@@ -43,6 +46,49 @@ const Expenses = () => {
             setTypeOfExpenses(sortedTypeOfExpenses);
         }
     },[isSuccess, data]);
+
+    useEffect(() => {
+        if (isUpdateSuccess) {
+            message.success("Expense updated Successfully");
+        } else if (isError) {
+            message.error(error.data?.message);
+        }
+    }, [isUpdateSuccess, isError, error]);
+
+
+    const customRequest = async ({file, onSuccess, onError, expenseId}) => {
+        const formData = new FormData();
+        formData.append("supportingDocument", file);
+        await updateExpense({body: formData, expenseId});
+    };
+
+    // const beforeUpload = (file) => {
+    //     if (file.type)
+    //     const isPNG = file.type === "image/png" || file.type === "image/jpeg";
+    //     if (!isPNG) {
+    //         message.error(`${file.name} is not a .png, .jpeg, .docx, .doc, .pdf file`);
+    //     }
+    //     return isPNG || Upload.LIST_IGNORE;
+    // };
+
+
+    const removeFile = async (expenseId) => {
+        const body = {
+            "supportingDocument": {fileId: '', filePath: ''}
+        };
+        await updateExpense({body, expenseId});
+    };
+
+    const props = {
+        onChange: (info) => {
+            if (info.file.status === "done") {
+                message.success(`${info.file.name} file uploaded successfully`);
+            } else if (info.file.status === "error") {
+                message.error(`${info.file.name} file upload failed.`);
+            }
+        },
+    };
+
 
     const columns = [
         {
@@ -134,6 +180,36 @@ const Expenses = () => {
             title: "Amount",
             dataIndex: "amount",
             key: "amount",
+        },
+        {
+            title: "Supporting Doc",
+            dataIndex: "supportingDocument",
+            key: "supportingDocument",
+            render: (_, record) => {
+                if (record.supportingDocument?.filePath) {
+                    return (
+                        <a target='_blank' className="text-white p-1 bg-blue-400 border rounded-[4px]" rel='noopener noreferrer'
+                                           href={record.supportingDocument?.filePath}>Download Doc</a>
+                    )
+                } else {
+                    return (
+                        <Upload
+                            // beforeUpload={beforeUpload}
+                            accept=".png, .pdf, .docx, .doc, .jpeg, .jpg"
+                            {...props}
+                            customRequest={async ({file, onSuccess, onError}) => customRequest({
+                                file,
+                                onSuccess,
+                                onError,
+                                expenseId: record._id
+                            })}
+                            onRemove={() => removeFile(record._id)}
+                        >
+                            <Button icon={<UploadOutlined/>}/>
+                        </Upload>
+                    )
+                }
+            }
         }
     ]
 

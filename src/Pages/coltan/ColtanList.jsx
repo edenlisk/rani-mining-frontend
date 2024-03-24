@@ -34,7 +34,8 @@ const ColtanListPage = () => {
     const {userData} = useSelector(state => state.persistedReducer?.global);
     const socket = useContext(SocketContext);
     const [dataz, setDataz] = useState([]);
-    const [numOfDocs, setNumOfDocs] = useState(null);
+    const [totalPages, setTotalPages] = useState(1);
+    const [currentPage, setCurrentPage] = useState(1);
     const {permissions} = userData;
     // const {profile, permissions} = loginData;
     const [createEditRequest, {
@@ -44,7 +45,7 @@ const ColtanListPage = () => {
         error: createRequestError
     }] = useCreateEditRequestMutation();
     const {data, isLoading, isSuccess, isError, error} =
-        useGetAllEntriesQuery({model: "coltan"}, {
+        useGetAllEntriesQuery({model: "coltan", page: currentPage}, {
             refetchOnMountOrArgChange: true,
             refetchOnReconnect: true
         });
@@ -83,12 +84,12 @@ const ColtanListPage = () => {
     useEffect(() => {
         if (isSuccess) {
             const {data: dt} = data;
-            const {entries: entrz, numberOfDocuments} = dt;
+            const {entries: entrz, totalPages: pages} = dt;
             if (entrz) {
                 setDataz(entrz);
             }
-            if (numberOfDocuments) {
-                setNumOfDocs(numberOfDocuments);
+            if (pages) {
+                setTotalPages(pages);
             }
         } else if (isError) {
             const { message: errorMessage } = error.data;
@@ -568,10 +569,20 @@ const ColtanListPage = () => {
                                 }}
                                 dataSource={dataz}
                                 columns={columns}
-                                pagination={{pageSize: 100, size: "small", total: numOfDocs}}
+                                pagination={{
+                                    pageSize: 100,
+                                    size: "small",
+                                    total: totalPages,
+                                    onChange: (targetPage) => {
+                                        setCurrentPage(targetPage);
+                                    }
+                                }}
                                 expandable={{
                                     expandedRowRender: record1 => <ColtanEntryCompletePage entryId={record1._id}/>,
                                     rowExpandable: record1 => record1.output?.length > 0,
+                                }}
+                                onChange={(pagination, filters, sorter, extra) => {
+                                    console.log(filters);
                                 }}
                                 rowKey="_id"
                             />
