@@ -979,19 +979,5 @@ export const {
     useGenerateForwardNoteMutation,
     useSetup2FAMutation,
     useVerify2FAMutation,
-    useVerifyCodeMutation,
-
-    // Expenses
-    useGetExpensesQuery,
-    useGetOneExpenseQuery,
-    useAddExpenseMutation,
-    useUpdateExpenseMutation,
-    useDeleteExpenseMutation,
-
-    // Beneficiaries
-    useGetBeneficiariesQuery,
-    useGetOneBeneficiaryQuery,
-    useAddBeneficiaryMutation,
-    useUpdateBeneficiaryMutation,
-    useDeleteBeneficiaryMutation,
+    useVerifyCodeMutation
 } = apiSlice

@@ -69,6 +69,7 @@ import EditRequests from "./Pages/EditRequests";
 import SingleImageUpload from "./Pages/Simbo";
 import Chat from "./Pages/Chat/Chat";
 import ColtanEditRequestPage from './Pages/EditRequestspages/ColtanEditRequestPage';
+import AssetsList from "./RaniAssets/AssetsList";
 // import InvoiceTemp from './test elements/InvoiceTemp';
 // import SuppliersInvoice from './Pages/InvoicePages/SuppliersInvoice';
 import AdvancedPaymentsList from './Pages/AdvancedPayments/AdvancedPaymentsList';
@@ -103,6 +104,7 @@ import MineralEntryEdit from './Pages/coltan/entry/MineralEntryEdit';
 import Expenses from "./Pages/Expenses/Expenses";
 import AddExpense from "./Pages/Expenses/addExpense";
 import Beneficiaries from "./Pages/Beneficiaries/Beneficiaries";
+import AddAsset from "./RaniAssets/AddAsset";
 
 function App() {
 
@@ -230,6 +232,8 @@ function App() {
                                     <Route path="/expenses/add" element={<AddExpense/>}/>
 
                                     <Route path="/beneficiaries" element={<Beneficiaries/>}/>
+                                    <Route path="/assets" element={<AssetsList/>}/>
+                                    <Route path="/assets/add" element={<AddAsset/>}/>
                                     <Route path="/yoo" element={<StyleTestPage/>}/>
                                     <Route path="/m" element={<MineralRawEntry/>}/>
                                 </Route>

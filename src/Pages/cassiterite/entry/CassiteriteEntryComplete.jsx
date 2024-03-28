@@ -457,6 +457,7 @@ const CassiteriteEntryCompletePage = ({entryId}) => {
             dataIndex: "weightOut",
             key: "weightOut",
             sorter: (a, b) => a.weightOut - b.weightOut,
+            editTable: true,
         },
         {
             title: "balance (KG)",

@@ -412,6 +412,7 @@ const WolframiteEntryCompletePage = ({entryId}) => {
             title: "weight out (KG)",
             dataIndex: "weightOut",
             key: "weightOut",
+            editable: true,
         },
         {
             title: "balance (KG)",
