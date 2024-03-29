@@ -15,7 +15,7 @@ export const apiSlice = createApi({
             return headers;
         },
     }),
-    tagTypes: ['buyers', 'contracts', 'advance-payment', 'messages', "tags", 'expenses', 'notifications', 'shipments', 'dueDiligence', 'payments', 'entries','suppliers', 'invoice', "dd-reports", "statistics", "settings", "editRequest"],
+    tagTypes: ['buyers', 'contracts', 'advance-payment', 'messages', "tags", 'expenses', 'assets', 'marketers',  'notifications', 'shipments', 'dueDiligence', 'payments', 'entries','suppliers', 'invoice', "dd-reports", "statistics", "settings", "editRequest"],
     endpoints: (builder) => ({
 
         endpointname: builder.query({
@@ -782,8 +782,37 @@ export const apiSlice = createApi({
             }),
             invalidatesTags: ['shipments']
         }),
-
-
+        getAllAssets: builder.query({
+            query: () => `/assets`,
+            providesTags: ['assets']
+        }),
+        getOneAsset: builder.query({
+            query: ({assetId}) => `/assets/${assetId}`,
+            providesTags: ['assets'],
+        }),
+        createAsset: builder.mutation({
+            query: ({body}) => ({
+                url: `/assets`,
+                method: "POST",
+                body
+            }),
+            invalidatesTags: ['assets']
+        }),
+        updateAsset: builder.mutation({
+            query: ({body, assetId}) => ({
+                url: `/assets/${assetId}`,
+                method: "PATCH",
+                body
+            }),
+            invalidatesTags: ['assets']
+        }),
+        deleteAsset: builder.mutation({
+            query: ({assetId}) => ({
+                url: `/assets/${assetId}`,
+                method: "DELETE",
+            }),
+            invalidatesTags: ['assets']
+        }),
         getExpenses: builder.query({
             query: () => `/expenses`,
             providesTags: ['expenses']
@@ -850,8 +879,31 @@ export const apiSlice = createApi({
                 method: "DELETE",
             }),
             invalidatesTags: ['beneficiaries']
+        }),
+        getAllMarketers: builder.query({
+            query: () => `/marketers`,
+            providesTags: ['marketers']
+        }),
+        getMarketer: builder.query({
+            query: ({marketerId}) => `/marketers/${marketerId}`,
+            providesTags: ['marketers']
+        }),
+        addMarketer: builder.mutation({
+            query: ({body}) => ({
+                url: `/marketers`,
+                method: "POST",
+                body
+            }),
+            invalidatesTags: ['marketers']
+        }),
+        updateMarketer: builder.mutation({
+            query: ({marketerId, body}) => ({
+                url: `/marketers/${marketerId}`,
+                method: "PATCH",
+                body
+            }),
+            invalidatesTags: ['marketers']
         })
-
 
     })
 })
@@ -981,5 +1033,24 @@ export const {
     useGenerateForwardNoteMutation,
     useSetup2FAMutation,
     useVerify2FAMutation,
-    useVerifyCodeMutation
+    useVerifyCodeMutation,
+    useGetAllAssetsQuery,
+    useGetOneAssetQuery,
+    useCreateAssetMutation,
+    useUpdateAssetMutation,
+    useDeleteAssetMutation,
+    useGetExpensesQuery,
+    useGetOneExpenseQuery,
+    useAddExpenseMutation,
+    useUpdateExpenseMutation,
+    useDeleteExpenseMutation,
+    useGetBeneficiariesQuery,
+    useGetOneBeneficiaryQuery,
+    useAddBeneficiaryMutation,
+    useUpdateBeneficiaryMutation,
+    useDeleteBeneficiaryMutation,
+    useGetAllMarketersQuery,
+    useGetMarketerQuery,
+    useAddMarketerMutation,
+    useUpdateMarketerMutation,
 } = apiSlice

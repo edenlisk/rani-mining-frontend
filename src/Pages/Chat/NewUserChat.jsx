@@ -53,7 +53,6 @@ const NewUSerChart = ({ chats, currentUser, setChats, visible, position, setNewU
   };
   const handleNewChartUser = async (id) => {
     const body={senderId:userData._id,receiverId:id};
-    console.log(body);
     const existingChats = chats.map(chat => chat.members.find(member => member.toString() !== userData._id.toString()));
     if (existingChats.includes(id.toString())) {
       setNewUserModal(!visible);

@@ -434,6 +434,12 @@ const ColtanEntryCompletePage = ({entryId}) => {
             key: "lotNumber",
         },
         {
+            title: "weight Before (KG)",
+            dataIndex: "weightBefore",
+            key: "weightBefore",
+            editTable: true,
+        },
+        {
             title: "weight out (KG)",
             dataIndex: "weightOut",
             key: "weightOut",

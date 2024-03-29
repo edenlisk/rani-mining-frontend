@@ -356,14 +356,28 @@ const ColtanListPage = () => {
                                                     if (record.supplierId) {
                                                         navigate(`/add/invoice/${record.supplierId}/coltan/${record._id}`);
                                                     } else {
-                                                        return message.warning("You have assign supplier to this entry");
+                                                        return message.warning("You have to assign supplier to this entry");
                                                     }
                                                 }}
                                             >
-                                                <FaFileInvoiceDollar className=" text-xl" />
+                                                <FaFileInvoiceDollar className=" text-xl"/>
                                                 <p>Make invoice</p>
                                             </li>
                                         )}
+
+                                        <li
+                                            className="flex gap-2 p-2 items-center hover:bg-slate-100"
+                                            onClick={() => {
+                                                if (record.supplierId) {
+                                                    navigate(`/add/invoice/${record.supplierId}/coltan/${record._id}`);
+                                                } else {
+                                                    return message.warning("You have assign supplier to this entry");
+                                                }
+                                            }}
+                                        >
+                                            <FaFileInvoiceDollar className=" text-xl"/>
+                                            <p>Append Marketer</p>
+                                        </li>
 
 
                                         {permissions.entry?.edit ? (
