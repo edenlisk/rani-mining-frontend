@@ -234,8 +234,6 @@ function App() {
                                     <Route path="/beneficiaries" element={<Beneficiaries/>}/>
                                     <Route path="/assets" element={<AssetsList/>}/>
                                     <Route path="/assets/add" element={<AddAsset/>}/>
-                                    <Route path="/yoo" element={<StyleTestPage/>}/>
-                                    <Route path="/m" element={<MineralRawEntry/>}/>
                                 </Route>
                                 {/*<Route path='*' element={<Navigate to="" replace/>}/>*/}
                             </Route>

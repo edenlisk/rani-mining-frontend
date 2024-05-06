@@ -8,7 +8,7 @@ import {
   useCreateEntryMutation,
 } from "../../../states/apislice";
 import { ImSpinner2 } from "react-icons/im";
-import { HiPlus, HiMinus,HiOutlineSearch } from "react-icons/hi";
+import { HiPlus, HiMinus, HiOutlineSearch } from "react-icons/hi";
 import { BsChevronDown } from "react-icons/bs";
 import { useNavigate, useParams } from "react-router-dom";
 import {
@@ -16,7 +16,7 @@ import {
   validateWeightInEntry,
 } from "../../../components/helperFunctions";
 import RenderFormHelper from "../../../components/RenderHelpersFunctions";
-import {message} from "antd";
+import { message } from "antd";
 
 const MineralRawEntry = () => {
   const { model } = useParams();
